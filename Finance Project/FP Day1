@@ -1,0 +1,19 @@
+import yfinance as yf
+import pandas as pd
+
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+
+ticker = yf.Ticker("AAPL")
+
+# Price history
+hist = ticker.history(period="1y")
+print(hist.tail())
+
+# Available expiry dates
+print(ticker.options)
+
+# Options chain for one expiry
+chain = ticker.option_chain("2026-07-17")
+print(chain.calls.head(10))
+print(chain.puts.head(10))
